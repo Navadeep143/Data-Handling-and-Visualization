@@ -1,0 +1,19 @@
+Scatter plot
+# Install and load necessary libraries
+install.packages(c("ggplot2", "reshape2"))
+library(ggplot2)
+library(reshape2)
+
+# Assuming 'food' is the name of your data frame
+# If you read the data using read.csv or read_excel, make sure to store it in a variable named 'food'
+
+# Melt the data for ggplot
+food_melted <- melt(food, id.vars = "Age")
+
+# Create the scatter plot using ggplot2
+ggplot(food_melted, aes(x = Age, y = value, color = variable)) +
+  geom_point() +
+  labs(title = "Scatter Plot of Daily Consumption by Age Group",
+       x = "Age Group",
+       y = "Daily Consumption") +
+  scale_color_manual(values = c("Dairy" = "blue", "StapleFood" = "green", "HighCalFood" = "red", "Supplements" = "purple"))
