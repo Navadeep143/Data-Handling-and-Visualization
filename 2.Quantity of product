@@ -1,0 +1,34 @@
+# Assuming your data frame is named "Product" with columns "ProductID", "ProductName", and "QuantityAvailable"
+
+# Create a scatter plot
+plot(Product$ProductID, Product$QuantityAvailable, 
+     main = "Scatter Plot of Quantity Available", 
+     xlab = "Product ID", 
+     ylab = "Quantity",
+     col = "blue",
+     pch = 16)
+# Install and load the RColorBrewer package
+# install.packages("RColorBrewer")
+library(RColorBrewer)
+
+# Assuming your data frame is named "Product" with columns "ProductID", "ProductName", and "QuantityAvailable"
+
+# Combine Product ID and Product Name for labels
+labels <- paste(Product$ProductID, Product$ProductName, sep = " - ")
+
+# Define a color palette (adjust the number accordingly)
+colors <- brewer.pal(length(labels), "Set2")
+
+# Pie chart
+pie(Product$QuantityAvailable, labels = labels, col = colors, main = "Pie Chart for Quantity Distribution for Each Product")
+# Assuming your data frame is named "Product" with columns "ProductID", "ProductNam
+x_labels <- paste(Product$ProductID, Product$ProductName, sep = " - ")
+
+# Bar graph
+barplot(Product$QuantityAvailable, 
+        names.arg = x_labels, 
+        col = "blue", 
+        main = "Bar Graph for Quantity Available for Each Product", 
+        xlab = "Product ID - Product Name", 
+        ylab = "Quantity", 
+        ylim = c(0, max(Product$QuantityAvailable) + 50))
