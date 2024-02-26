@@ -1,0 +1,85 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_excel("Browser.xlsx")
+
+chrome_data = df[df['Browser'] == 'Chrome']
+
+plt.plot(chrome_data['Year'], chrome_data['Users'], marker='o', linestyle='-')
+
+plt.title('Chrome Users Over the Years')
+plt.xlabel('Year')
+plt.ylabel('Users (Millions)')
+
+plt.grid(True)
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.graphics.mosaicplot import mosaic
+
+df = pd.read_excel("Grade.xlsx")
+
+mosaic(df, ['SCHOOL', 'GRADE_LEVEL'], title='Mosaic Plot of Number of Students by School and Grade Level')
+plt.show()
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_excel("Jobseekers.xlsx")
+
+# Assuming you have columns 'Year', 'Job_seekers_rate', 'selection_rate' in your DataFrame
+years = df['Year']
+job_seekers_rate = df['Job_Seekers_Rate']
+selection_rate = df['Selection_Rate']
+job_sectors = df['Job_Sector']
+
+# Plotting
+plt.figure(figsize=(10, 6))
+
+# Plot job seekers rate
+plt.plot(years, job_seekers_rate, marker='o', label='Job Seekers Rate')
+
+# Plot selection rate
+plt.plot(years, selection_rate, marker='o', label='Selection Rate')
+
+# Add labels and title
+plt.xlabel('Year')
+plt.ylabel('Rate (%)')
+plt.title('Job Seekers Rate and Selection Rate by Year and Job Sector')
+plt.xticks(years)
+plt.legend()
+
+# Add job sectors as x-axis ticks
+plt.gca().set_xticklabels(job_sectors, rotation=45, ha='right')
+
+# Show plot
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_excel("Temperature.xlsx")
+
+df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
+
+df.set_index('Date', inplace=True)
+
+plt.figure(figsize=(12, 6))
+
+plt.plot(df.index, df['Station_A_Temperature'], label='Station_A_Temperature', color='red')
+plt.plot(df.index, df['Station_A_Precipitation'], label='Station_A_Precipitation', color='orange')
+plt.plot(df.index, df['Station_B_Temperature'], label='Station_B_Temperature', color='blue')
+plt.plot(df.index, df['Station_B_Precipitation'], label='Station_B_Precipitation', color='green')
+
+plt.title('Temperature and Precipitation Over Time')
+plt.xlabel('Date')
+plt.ylabel('Value')
+plt.legend()
+plt.grid(True)
+plt.show()
